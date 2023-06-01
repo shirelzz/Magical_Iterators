@@ -13,11 +13,14 @@ private:
 
 public:
 
-    void add(int element);
+    void addElement(int element);
 
-    void remove(int element);
+    void removeElement(int element); // index?
 
-    int size() const;
+    int size() const { return elements.size(); }
+
+    // int get(int index);
+
 
     class AscendingIterator {
 
@@ -29,13 +32,13 @@ public:
     public:
 
         // Default constructor
-        AscendingIterator();
+        AscendingIterator(MagicalContainer &container);
 
         // Copy constructor
-        AscendingIterator(AscendingIterator &other);
+        AscendingIterator(const AscendingIterator &other);
 
         // Destructor
-        ~AscendingIterator();
+        ~AscendingIterator() = default;
 
         // Assignment operator
         AscendingIterator& operator=(const AscendingIterator& other);
@@ -59,10 +62,10 @@ public:
         AscendingIterator& operator++();
 
         // begin(type)
-        AscendingIterator begin(const MagicalContainer& container);
+        AscendingIterator begin();
 
         // end(type)
-        AscendingIterator end(const MagicalContainer& container);
+        AscendingIterator end();
 
     };
 
@@ -76,13 +79,13 @@ public:
     public:
 
         // Default constructor
-        SideCrossIterator();
+        SideCrossIterator(MagicalContainer &container);
 
         // Copy constructor
-        SideCrossIterator(SideCrossIterator &other);
+        SideCrossIterator(const SideCrossIterator &other);
 
         // Destructor
-        ~SideCrossIterator();
+        ~SideCrossIterator() = default;
 
         // Assignment operator
         SideCrossIterator& operator=(const SideCrossIterator& other);
@@ -106,10 +109,10 @@ public:
         SideCrossIterator& operator++();
 
         // begin(type)
-        SideCrossIterator begin(const MagicalContainer& container);
+        SideCrossIterator begin();
 
         // end(type)
-        SideCrossIterator end(const MagicalContainer& container);
+        SideCrossIterator end();
     };
 
     class PrimeIterator {
@@ -121,13 +124,13 @@ public:
     public:
 
         // Default constructor
-        PrimeIterator();
+        PrimeIterator(MagicalContainer &container);
 
         // Copy constructor
-        PrimeIterator(PrimeIterator &other);
+        PrimeIterator(const PrimeIterator &other);
 
         // Destructor
-        ~PrimeIterator();
+        ~PrimeIterator() = default;
 
         // Assignment operator
         PrimeIterator& operator=(const PrimeIterator& other);
@@ -151,10 +154,10 @@ public:
         PrimeIterator& operator++();
 
         // begin(type)
-        PrimeIterator begin(const MagicalContainer& container);
+        PrimeIterator begin();
 
         // end(type)
-        PrimeIterator end(const MagicalContainer& container);
+        PrimeIterator end();
     };
 
 
