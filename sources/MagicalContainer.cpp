@@ -9,16 +9,35 @@ void MagicalContainer::addElement(int element){}
 
 void MagicalContainer::removeElement(int element){}
 
+bool MagicalContainer::isPrime(int num)
+{
+    return true;
+}
+
 
 /**
  * AscendingIterator:
 */
 
-MagicalContainer::AscendingIterator::AscendingIterator(MagicalContainer &container): container(container) {}
+MagicalContainer::AscendingIterator::AscendingIterator(MagicalContainer &container)
+: container(container), currentIndex(0) {}
 
-MagicalContainer::AscendingIterator::AscendingIterator(const MagicalContainer::AscendingIterator &other): container(other.container) {}
+MagicalContainer::AscendingIterator::AscendingIterator(const MagicalContainer::AscendingIterator &other)
+: container(other.container), currentIndex(other.currentIndex) {}
 
-MagicalContainer::AscendingIterator &MagicalContainer::AscendingIterator::operator=(const MagicalContainer::AscendingIterator &other)
+// tidy
+MagicalContainer::AscendingIterator::AscendingIterator(MagicalContainer::AscendingIterator &&other) noexcept
+: container(other.container), currentIndex(other.currentIndex) {}
+
+MagicalContainer::AscendingIterator
+&MagicalContainer::AscendingIterator::operator=(const MagicalContainer::AscendingIterator &other)
+{
+    return *this;
+}
+
+// tidy
+MagicalContainer::AscendingIterator
+&MagicalContainer::AscendingIterator::operator=(MagicalContainer::AscendingIterator &&other) noexcept
 {
     return *this;
 }
@@ -67,11 +86,24 @@ MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::end()
  * SideCrossIterator:
 */
 
-MagicalContainer::SideCrossIterator::SideCrossIterator(MagicalContainer &container) : container(container) {}
+MagicalContainer::SideCrossIterator::SideCrossIterator(MagicalContainer &container)
+: container(container), rightIndex(0), leftIndex(0) {}
 
-MagicalContainer::SideCrossIterator::SideCrossIterator(const MagicalContainer::SideCrossIterator &other) : container(other.container) {}
+MagicalContainer::SideCrossIterator::SideCrossIterator(const MagicalContainer::SideCrossIterator &other)
+: container(other.container), rightIndex(other.rightIndex), leftIndex(other.leftIndex) {}
+
+// tidy
+MagicalContainer::SideCrossIterator::SideCrossIterator(MagicalContainer::SideCrossIterator &&other) noexcept
+: container(other.container), rightIndex(other.rightIndex), leftIndex(other.leftIndex) {}
 
 MagicalContainer::SideCrossIterator &MagicalContainer::SideCrossIterator::operator=(const MagicalContainer::SideCrossIterator &other)
+{
+    return *this;
+}
+
+// tidy
+MagicalContainer::SideCrossIterator
+&MagicalContainer::SideCrossIterator::operator=(MagicalContainer::SideCrossIterator &&other) noexcept
 {
     return *this;
 }
@@ -103,7 +135,7 @@ int MagicalContainer::SideCrossIterator::operator*() const
 
 MagicalContainer::SideCrossIterator &MagicalContainer::SideCrossIterator::operator++()
 {
-    return this[++currentIndex];
+    return this[0];
 }
 
 MagicalContainer::SideCrossIterator MagicalContainer::SideCrossIterator::begin()
@@ -121,11 +153,24 @@ MagicalContainer::SideCrossIterator MagicalContainer::SideCrossIterator::end()
  * PrimeIterator:
 */
 
-MagicalContainer::PrimeIterator::PrimeIterator(MagicalContainer &container) : container(container) {}
+MagicalContainer::PrimeIterator::PrimeIterator(MagicalContainer &container)
+: container(container), currentIndex(0) {}
 
-MagicalContainer::PrimeIterator::PrimeIterator(const MagicalContainer::PrimeIterator &other) : container(other.container) {}
+MagicalContainer::PrimeIterator::PrimeIterator(const MagicalContainer::PrimeIterator &other)
+: container(other.container), currentIndex(other.currentIndex) {}
+
+// tidy
+MagicalContainer::PrimeIterator::PrimeIterator(MagicalContainer::PrimeIterator &&other) noexcept
+: container(other.container), currentIndex(other.currentIndex) {}
 
 MagicalContainer::PrimeIterator &MagicalContainer::PrimeIterator::operator=(const MagicalContainer::PrimeIterator &other)
+{
+    return *this;
+}
+
+// tidy
+MagicalContainer::PrimeIterator
+&MagicalContainer::PrimeIterator::operator=(MagicalContainer::PrimeIterator &&other) noexcept
 {
     return *this;
 }
@@ -162,12 +207,7 @@ MagicalContainer::PrimeIterator &MagicalContainer::PrimeIterator::operator++()
 }
 
 MagicalContainer::PrimeIterator MagicalContainer::PrimeIterator::begin()
-{
-    // if (this->container == nullptr)
-    // {
-    //     /* code */
-    // }
-    
+{    
     return this[0];
 }
 

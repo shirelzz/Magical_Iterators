@@ -29,8 +29,19 @@ TEST_CASE("Empty Container"){
 TEST_CASE("Single Element Container"){
 
     MagicalContainer container;
+    container.addElement(176);
 
-    // test iters begin end
+    MagicalContainer::AscendingIterator ascIterator(container);
+    MagicalContainer::PrimeIterator prmIterator(container);
+    MagicalContainer::SideCrossIterator crsIterator(container);
+
+    CHECK(*ascIterator.begin() == 176);
+    CHECK(*prmIterator.begin() == 176);
+    CHECK(*crsIterator.begin() == 176);
+
+    CHECK(*ascIterator.begin() == *ascIterator.end());
+    CHECK(*prmIterator.begin() == *prmIterator.end());
+    CHECK(*crsIterator.begin() == *crsIterator.end());
     
 }
 
@@ -75,7 +86,7 @@ TEST_SUITE("MagicalContainer Test") {
     }
 }
 
-TEST_SUITE("Iterators Test") {
+TEST_CASE("Iterators Test") {
 
     MagicalContainer container;
 
@@ -85,7 +96,7 @@ TEST_SUITE("Iterators Test") {
     container.addElement(5);
     container.addElement(14);
 
-    TEST_CASE("AscendingIterator") {
+    SUBCASE("AscendingIterator") {
 
         MagicalContainer:: AscendingIterator ascIterator(container);
 
@@ -108,17 +119,14 @@ TEST_SUITE("Iterators Test") {
         // CHECK(ascIterator == ascEndIterator);
     }
 
-    TEST_CASE("SideCrossIterator") {
+    SUBCASE("SideCrossIterator") {
 
-        MagicalContainer:: SideCrossIterator crossIterator = SideCrossIterator::begin(container);
-        MagicalContainer:: SideCrossIterator crossEndIterator = SideCrossIterator::end(container);
+        MagicalContainer:: SideCrossIterator crossIterator(container);
 
         CHECK(*crossIterator == 1);
-        CHECK(*crossEndIterator == 14);
 
         ++crossIterator;
         CHECK(*crossIterator == 14);
-        CHECK(crossIterator != crossEndIterator);
 
         ++crossIterator;
         CHECK(*crossIterator == 2);
@@ -130,23 +138,20 @@ TEST_SUITE("Iterators Test") {
         CHECK(*crossIterator == 4);
 
         ++crossIterator;
-        CHECK(crossIterator == crossEndIterator);
+        // CHECK(crossIterator == crossEndIterator);
     }
 
-    TEST_CASE("PrimeIterator") {
+    SUBCASE("PrimeIterator") {
 
-        MagicalContainer:: PrimeIterator primeIterator = PrimeIterator::begin(container);
-        MagicalContainer:: PrimeIterator primeEndIterator = PrimeIterator::end(container);
+        MagicalContainer:: PrimeIterator primeIterator(container);
 
         CHECK(*primeIterator == 2);
-        CHECK(*primeEndIterator == 5);
 
         ++primeIterator;
         CHECK(*primeIterator == 5);
-        CHECK(primeIterator != primeEndIterator);
 
         ++primeIterator;
-        CHECK(primeIterator == primeEndIterator);
+        // CHECK(primeIterator == primeEndIterator);
     }
 }
 

@@ -10,6 +10,7 @@ class MagicalContainer {
 private:
 
     std::vector<int> elements;
+    std::vector<int*> primePointers;
 
 public:
 
@@ -17,7 +18,9 @@ public:
 
     void removeElement(int element); // index?
 
-    int size() const { return elements.size(); }
+    std::size_t size() const { return elements.size(); }
+
+    bool isPrime(int num);
 
     // int get(int index);
 
@@ -37,11 +40,17 @@ public:
         // Copy constructor
         AscendingIterator(const AscendingIterator &other);
 
+        // Move constructor (tidy)
+        AscendingIterator(AscendingIterator&& other) noexcept;
+
         // Destructor
         ~AscendingIterator() = default;
 
         // Assignment operator
         AscendingIterator& operator=(const AscendingIterator& other);
+
+        // Move assignment operator (tidy)
+        AscendingIterator& operator=(AscendingIterator&& other) noexcept;
 
         // Equality comparison (operator==)
         bool operator==(const AscendingIterator& other) const;
@@ -74,7 +83,8 @@ public:
     private:
 
         MagicalContainer& container;
-        int currentIndex;
+        int rightIndex;
+        int leftIndex;
 
     public:
 
@@ -84,11 +94,17 @@ public:
         // Copy constructor
         SideCrossIterator(const SideCrossIterator &other);
 
+        // Move constructor (tidy)
+        SideCrossIterator(SideCrossIterator&& other) noexcept;
+
         // Destructor
         ~SideCrossIterator() = default;
 
         // Assignment operator
         SideCrossIterator& operator=(const SideCrossIterator& other);
+
+        // Move assignment operator (tidy)
+        SideCrossIterator& operator=(SideCrossIterator&& other) noexcept;
 
         // Equality comparison (operator==)
         bool operator==(const SideCrossIterator& other) const;
@@ -129,11 +145,17 @@ public:
         // Copy constructor
         PrimeIterator(const PrimeIterator &other);
 
+        // Move constructor (tidy)
+        PrimeIterator(PrimeIterator&& other) noexcept;
+
         // Destructor
         ~PrimeIterator() = default;
 
         // Assignment operator
         PrimeIterator& operator=(const PrimeIterator& other);
+
+        // Move assignment operator (tidy)
+        PrimeIterator& operator=(PrimeIterator&& other) noexcept;
 
         // Equality comparison (operator==)
         bool operator==(const PrimeIterator& other) const;
